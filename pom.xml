@@ -8,6 +8,7 @@
 	<modules>
 		<module>production2.0-apis-service</module>
 		<module>production2.0-system-service</module>
+		<module>production2.0-eureka-service</module>
 	</modules>
 
 	<parent>
@@ -17,11 +18,30 @@
 		<relativePath />
 	</parent>
 	
+	<dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.M7</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+	
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
+		 <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+		
 		
 		<dependency>
 			<groupId>org.projectlombok</groupId>
