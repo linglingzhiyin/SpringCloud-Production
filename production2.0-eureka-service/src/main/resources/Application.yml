@@ -13,3 +13,4 @@ eureka:
     register-with-euraka: false
     ##是否检索服务信息
     fetch-register: false
+  

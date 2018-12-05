@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mzj.api.entity.authority.SysUser;
 import com.mzj.api.service.IUserService;
 import com.mzj.mapper.SysUserMapper;
@@ -27,29 +26,27 @@ public class UserService implements IUserService {
 
 	@RequestMapping("/getUser")
 	public SysUser getUser(String id) {
-		SysUser s = new SysUser();
-		s.setId(id);
-		return sysUserMapper.selectOne(s);
+		return sysUserMapper.selectOne(new QueryWrapper<SysUser>().eq("id", id));
 	}
 
 	@Override	
 	@RequestMapping(value="/findByUserNameAndId",method=RequestMethod.POST)
 	public List<SysUser> findByUserNameAndId(String username, String id) {
 		if (id != null)
-			return sysUserMapper.selectList(new EntityWrapper<SysUser>().eq("username", username).ne("id", id));
+			return sysUserMapper.selectList(new QueryWrapper<SysUser>().eq("username", username).ne("id", id));
 		return null;
 	}
 
 	@Override
 	@RequestMapping(value="/searchSysUserBySysUserName",method=RequestMethod.POST)
 	public List<SysUser> searchSysUserBySysUserName(String sysUserName) {
-		return sysUserMapper.selectList(new EntityWrapper<SysUser>().like("username", sysUserName));
+		return sysUserMapper.selectList(new QueryWrapper<SysUser>().like("username", sysUserName));
 	}
 
 	@Override
 	@RequestMapping(value="/searchSysUserBySysUserId",method=RequestMethod.POST)
 	public List<SysUser> searchSysUserBySysUserId(String sysUserId) {
-		return sysUserMapper.selectList(new EntityWrapper<SysUser>().like("id", sysUserId));
+		return sysUserMapper.selectList(new QueryWrapper<SysUser>().like("id", sysUserId));
 	}
 
 }

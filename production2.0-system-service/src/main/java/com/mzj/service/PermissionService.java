@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mzj.api.entity.authority.SysRolePermission;
 import com.mzj.api.service.IPermissionService;
 import com.mzj.mapper.SysPermissionMapper;
@@ -37,17 +37,15 @@ public class PermissionService implements IPermissionService {
 	@Override
 	@RequestMapping(value = "/getRolePermissionById", method = RequestMethod.POST)
 	public SysRolePermission getRolePermissionById(String id) {
-		SysRolePermission sysRolePermission = new SysRolePermission();
-		sysRolePermission.setId(id);
-		return sysRolePermissionMapper.selectOne(sysRolePermission);
+		return sysRolePermissionMapper.selectOne(new QueryWrapper<SysRolePermission>()
+				.eq("id", id));
 	}
 
 	@Override
 	@RequestMapping(value = "/getRolePermissionByRoleId", method = RequestMethod.POST)
 	public SysRolePermission getRolePermissionByRoleId(String roleId) {
-		SysRolePermission sysRolePermission = new SysRolePermission();
-		sysRolePermission.setSysRoleId(roleId);
-		return sysRolePermissionMapper.selectOne(sysRolePermission);
+		return sysRolePermissionMapper.selectOne(new QueryWrapper<SysRolePermission>()
+				.eq("sys_role_id", roleId));
 	}
 
 }
