@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: production2.0-system-service
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: mzj
+Implementation-Vendor-Id: com.mzj
+Build-Jdk: 1.8.0_191
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/production2.0-parent/production2.0-system-service
+Created-By: Maven Integration for Eclipse
+

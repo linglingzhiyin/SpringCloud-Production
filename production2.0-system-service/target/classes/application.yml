@@ -1,0 +1,12 @@
+server:
+  port: 9001
+spring: 
+  application:
+    name: production-user
+  datasource: 
+    url: jdbc:mysql://127.0.0.1:3306/production2.0?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 
+mybatis: 
+  type-aliases-package: com.mzj.api.entity.authority
