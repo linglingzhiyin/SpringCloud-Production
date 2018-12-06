@@ -10,5 +10,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>production2.0-api-system-service</module>
+		<module>production2.0-api-schedule-service</module>
+		<module>production2.0-api-manager-service</module>
 	</modules>
 </project>
