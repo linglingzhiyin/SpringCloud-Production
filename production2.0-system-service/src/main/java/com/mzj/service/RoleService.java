@@ -43,8 +43,9 @@ public class RoleService implements IRoleService {
 		List<SysRole> roles = new ArrayList<SysRole>();
 		List<SysUserRole> list = sysUserRoleMapper.selectList(new QueryWrapper<SysUserRole>().eq("sys_user_id", userId));
 		if (!CollectionUtils.isEmpty(list)) {
-			for (SysUserRole sr : list) {
-				roles.add(sysRoleMapper.selectOne(new QueryWrapper<SysRole>().eq("sys_user_id", sr.getSysUserId())));
+			for (SysUserRole sur : list) {
+				SysRole sr=sysRoleMapper.selectOne(new QueryWrapper<SysRole>().eq("role_id", sur.getSysRoleId()));
+				roles.add(sr);
 			}
 			return roles;
 		}
