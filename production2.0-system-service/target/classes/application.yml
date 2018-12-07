@@ -1,5 +1,7 @@
 server:
   port: 9001
+  tomcate: 
+    max-threds: 10
 spring:
   application:
     name: production-system
@@ -29,3 +31,9 @@ eureka:
       defaultZone: http://localhost:8100/eureka/
     register-with-euraka: true
     fetch-register: true
+  instance: 
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-inseconds: 2
+
+    
+    

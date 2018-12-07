@@ -7,10 +7,12 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.WebUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.mzj.api.service.ILoginService;
 
@@ -21,13 +23,17 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller
-public class LoginService implements ILoginService{
+@RestController
+public class LoginService implements ILoginService {
+	
+	@Value("${server.port}")
+	private String serverPort;
+	
 
-	@RequestMapping(value = "/login")
-	@ResponseBody
-	public Map<String, Object> login(@RequestParam String username, @RequestParam String password,
-			@RequestParam(required = false) String randomcode, HttpSession session) throws Exception {
+	public Map<String, Object> login(@RequestParam("username") String username,
+			@RequestParam("password") String password,
+			@RequestParam(value = "randomcode", required = false) String randomcode, HttpSession session)
+			throws Exception {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -58,18 +64,17 @@ public class LoginService implements ILoginService{
 		// 返回json数据
 		return map;
 	}
-	
-	@RequestMapping("/index")
-	public String index() {
-		return "/Login";
+	static int i=0;
+	public String index(@RequestParam("abc") String abc) {
+		
+		System.out.println(serverPort+"/"+abc+i++);
+		return serverPort+"/"+abc;
 	}
 
-	@RequestMapping("/main")
 	public String main() {
 		return "main";
 	}
 
-	@RequestMapping("/403")
 	public String bug() {
 		return "403";
 	}
