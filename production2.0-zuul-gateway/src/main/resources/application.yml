@@ -1,0 +1,67 @@
+server:
+  port: 2610
+  tomcat:
+    max-threds: 10
+spring:
+  application:
+    name: production-zuul
+  cloud: 
+    config: 
+      profile: dev
+      discovery: 
+        service-id: production-config
+        enabled: true
+    
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/production2.0?useSSL=false
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: null
+      initial-size: 1
+      max-active: 20
+      min-idle: 1
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 1 FROM DUAL
+      validation-query-timeout: 30000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/
+    register-with-euraka: true
+    fetch-register: true
+#zuul:
+#  routes:
+#    api-a:
+#      path: /system/**
+#      serviceId: production-system
+#    api-b:
+#      path: /page/**
+#      serviceId: production-page
+
+#ribbon:
+#  ReadTime: 5000
+#  ConnectTomeout: 5000
+
+management: 
+  endpoinst: 
+    web: 
+      exposure: 
+        include: "*"
+
+feign:
+  hystrix:
+    enabled: true

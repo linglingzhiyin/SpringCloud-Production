@@ -11,6 +11,8 @@
 		<module>production2.0-eureka-service</module>
 		<module>production2.0-manager-service</module>
 		<module>production2.0-page-service</module>
+		<module>production2.0-zuul-gateway</module>
+		<module>production2.0-config-service</module>
 	</modules>
 
 	<parent>

@@ -14,11 +14,10 @@ public interface ILoginService {
 	@RequestMapping(value = "/login")
 	@ResponseBody
 	public Map<String, Object> login(@RequestParam("username") String username,
-			@RequestParam("password") String password,
-			@RequestParam(value = "randomcode", required = false) String randomcode, HttpSession session)
+			@RequestParam("password") String password)
 			throws Exception;
 
-	@RequestMapping("/index")
+	@RequestMapping("/index123")
 	public String index(@RequestParam("abc") String abc);
 
 	@RequestMapping("/main")

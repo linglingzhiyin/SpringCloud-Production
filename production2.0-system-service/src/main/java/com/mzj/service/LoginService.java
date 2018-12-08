@@ -28,26 +28,19 @@ public class LoginService implements ILoginService {
 	
 	@Value("${server.port}")
 	private String serverPort;
-	
+
+	@RequestMapping(value = "/index")
+	@ResponseBody
+	public String index132() {
+		return "sysService";
+	}
 
 	public Map<String, Object> login(@RequestParam("username") String username,
-			@RequestParam("password") String password,
-			@RequestParam(value = "randomcode", required = false) String randomcode, HttpSession session)
+			@RequestParam("password") String password)
 			throws Exception {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		if (randomcode != null && !randomcode.equals("")) {
-			// 取出session的验证码（正确的验证码）
-			String validateCode = (String) session.getAttribute("validateCode");
-			// 页面中输入的验证和session中的验证进行对比
-			if (validateCode != null && !randomcode.equals(validateCode)) {
-				// 如果校验失败，将验证码错误失败信息放入map中
-				map.put("msg", "randomcode_error");
-				// 直接返回，不再校验账号和密码
-				return map;
-			}
-		}
 		Subject currentUser = SecurityUtils.getSubject();
 		if (!currentUser.isAuthenticated()) {
 			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -64,6 +57,7 @@ public class LoginService implements ILoginService {
 		// 返回json数据
 		return map;
 	}
+	
 	static int i=0;
 	public String index(@RequestParam("abc") String abc) {
 		

@@ -24,14 +24,19 @@ public class LoginController {
 	@RequestMapping(value = "/ajaxLogin")
 	@ResponseBody
 	@HystrixCommand(fallbackMethod = "indexHystrixfallbackMethod")
-	public Map<String, Object> ajaxLogin(@RequestParam String username, @RequestParam String password,
-			@RequestParam(required = false) String randomcode, HttpSession session) throws Exception {
-		return loginService.login(username, password, randomcode, session);
+	public Map<String, Object> ajaxLogin(@RequestParam String username, @RequestParam String password) throws Exception {
+		return loginService.login(username, password);
+	}
+	
+	@RequestMapping(value = "/index")
+	@ResponseBody
+	public String index() throws Exception {
+		return "pageService";
 	}
 
 	@RequestMapping(value = "/index123456")
 	@ResponseBody
-	public String index(@RequestParam String username) throws Exception {
+	public String index123456(@RequestParam String username) throws Exception {
 		return loginService.index(username);
 	}
 
