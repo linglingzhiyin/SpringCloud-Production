@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mzj.api.entity.authority.SysUser;
+
 @RequestMapping("/")
 public interface ILoginService {
 
 	@RequestMapping(value = "/login")
 	@ResponseBody
-	public Map<String, Object> login(@RequestParam("username") String username,
+	public SysUser login(@RequestParam("username") String username,
 			@RequestParam("password") String password)
 			throws Exception;
 

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mzj.api.entity.authority.SysUser;
 import com.mzj.feign.LoginService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
@@ -24,7 +25,7 @@ public class LoginController {
 	@RequestMapping(value = "/ajaxLogin")
 	@ResponseBody
 	@HystrixCommand(fallbackMethod = "indexHystrixfallbackMethod")
-	public Map<String, Object> ajaxLogin(@RequestParam String username, @RequestParam String password) throws Exception {
+	public SysUser ajaxLogin(@RequestParam String username, @RequestParam String password) throws Exception {
 		return loginService.login(username, password);
 	}
 	

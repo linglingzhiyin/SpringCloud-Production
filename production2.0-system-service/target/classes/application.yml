@@ -1,10 +1,26 @@
 server:
   port: 9001
-  tomcate: 
+  tomcate:
     max-threds: 10
 spring:
   application:
     name: production-system
+  rabbitmq:
+    host: 192.168.1.2
+    port: 5672
+    username: user_mmr
+    password: 123
+  mail:
+    host: smtp.163.com
+    port: 465
+    username: mzj2610@163.com
+    password: 2610mzj
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -31,9 +47,6 @@ eureka:
       defaultZone: http://localhost:8100/eureka/
     register-with-euraka: true
     fetch-register: true
-  instance: 
+  instance:
     lease-renewal-interval-in-seconds: 1
     lease-expiration-duration-inseconds: 2
-
-    
-    
